@@ -1,20 +1,64 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:weightSum="1">
 
-    <TextView
-        android:id="@+id/instructionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:text="@string/instructionText" />
+    <FrameLayout
+        android:layout_width="388dp"
+        android:layout_height="271dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/Framelayout">
+
+        <TextView
+            android:layout_width="326dp"
+            android:layout_height="79dp"
+            android:text="@string/instructionText"
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal|top" />
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="268dp"
+            android:layout_height="wrap_content"
+            android:onClick="start"
+            android:text="@string/startText"
+            android:layout_gravity="center" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/playButton"
+            android:id="@+id/playButton"
+            android:onClick="play"
+            android:enabled="false"
+            android:layout_gravity="center_horizontal|bottom" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="129dp"
+        android:layout_gravity="center_horizontal">
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="122dp"
+        android:layout_gravity="center_horizontal">
+
+    </FrameLayout>
 
     <Button
-        android:id="@+id/startButton"
-        android:layout_width="match_parent"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="start"
-        android:text="@string/startText" />
+        android:text="@string/credits"
+        android:id="@+id/creditsButton"
+        android:onClick="displayCredits"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="right" />
 
 </LinearLayout>
