@@ -28,39 +28,11 @@ public class MainActivity extends Activity {
 
     private Game game = new Game();
 
-    private int playerPosX = 5;
-    private int playerPosY = 24;
-    private int hitpoints = 3;
-
     // The start button.
     private Button mStartButton;
     private Button mPlayButton;
     private int sendDelay;
     private boolean proceed;
-
-    public int getPlayerPosX() {
-        return playerPosX;
-    }
-
-    public int getPlayerPosY() {
-        return playerPosY;
-    }
-
-    public void setPlayerPosX(int playerPosX) {
-        this.playerPosX = playerPosX;
-    }
-
-    public void setPlayerPosY(int playerPosY) {
-        this.playerPosY = playerPosY;
-    }
-
-    public int getHitpoints() {
-        return hitpoints;
-    }
-
-    public void setHitpoints(int hitpoints) {
-        this.hitpoints = hitpoints;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +100,7 @@ public class MainActivity extends Activity {
                 game.setBT(BT);
                 game.setSendDelay(sendDelay);
 
-                game.intro();
+                //game.intro();
 
                 runOnUiThread(new Runnable() {
                     @Override
@@ -139,69 +111,9 @@ public class MainActivity extends Activity {
 
                 game.intro2();
 
+                game.startgame();
 
-                boolean restarted = true;
 
-                while(restarted) {
-                    boolean playing = true;
-                    setHitpoints(3);
-                    while (playing && hitpoints < 3) {
-                        loop = true;
-                        setPlayerPosX(5);
-                        setPlayerPosY(24);
-                        while (loop) {
-                            /*
-                            counter2++;
-
-                            // Change pattern every 10 frames.
-                            if (counter2 >= 7) {
-                                if (a == 200) {
-                                    a = 0;
-                                    b = 200;
-                                } else {
-                                    a = 200;
-                                    b = 0;
-                                }
-                                counter2 = 0;
-
-                            }
-                            */
-
-                            // Fill message buffer.
-                            byte[] msgBuffer = new byte[24 * 24];
-                            for (int i = 0; i < (24 * 24); i++) {
-                                if (i % 6 < 3) {
-                                    msgBuffer[i] = (byte) a;
-                                }
-                                else {
-                                    msgBuffer[i] = (byte) b;
-                                }
-                                if ( (i/24) % 6 < 3 ) {
-                                    if ( msgBuffer[i] == (byte) a) {
-                                        msgBuffer[i] = (byte) b;
-                                    }
-                                    else {
-                                        msgBuffer[i] = (byte) a;
-                                    }
-                                }
-                            }
-
-                            // If write fails, the connection was probably closed by the server.
-                            if (!BT.write(msgBuffer)) {
-                                loop = false;
-                                playing = false;
-                            }
-
-                            try {
-                                // Delay for a moment.
-                                // Note: Delaying the same amount of time every frame will not give you constant FPS.
-                                Thread.sleep(sendDelay);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                }
 
 
 
