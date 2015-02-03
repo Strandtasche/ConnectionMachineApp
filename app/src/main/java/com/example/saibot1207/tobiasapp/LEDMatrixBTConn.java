@@ -53,7 +53,7 @@ public class LEDMatrixBTConn {
     // The maximum frames per second supported by the display
     private volatile int mMaxFPS;
 
-    // The size of the display in LEDs in the X direction.
+    // The size of the display in LEDs in the x direction.
     private volatile int mXSize;
 
     // The size of the display in LEDs in the Y direction.

@@ -291,18 +291,5 @@ public class Game {
         }
     }
 
-    public void moveUp() {
-        setPlayerPosY(getPlayerPosY() - 1);
-    }
 
-    public void moveDown() {
-        setPlayerPosY(getPlayerPosY() + 1);
-    }
-    public void moveLeft() {
-        setPlayerPosX(getPlayerPosX() - 1);
-    }
-
-    public void moveRight() {
-        setPlayerPosX(getPlayerPosX() + 1);
-    }
 }

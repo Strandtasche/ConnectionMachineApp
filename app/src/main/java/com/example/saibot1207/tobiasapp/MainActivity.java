@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +36,10 @@ public class MainActivity extends Activity {
     private Button mStartButton;
     private Button mPlayButton;
     private Button mXBotton;
+    private Button mButtonUp;
+    private Button mButtonDown;
+    private Button mButtonLeft;
+    private Button mButtonRight;
     private int sendDelay;
     private boolean proceed;
 
@@ -46,7 +51,11 @@ public class MainActivity extends Activity {
 
         mStartButton = (Button) findViewById(R.id.startButton);
         mPlayButton = (Button) findViewById(R.id.playButton);
-        mXBotton = (Button) findViewById(R.id.buttonX);
+        mButtonDown = (Button) findViewById(R.id.buttonDown);
+        mButtonUp = (Button) findViewById(R.id.buttonUp);
+        mButtonLeft = (Button) findViewById(R.id.buttonLeft);
+        mButtonRight = (Button) findViewById(R.id.buttonRight);
+        /* mXBotton = (Button) findViewById(R.id.buttonX);
         mXBotton.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
@@ -60,25 +69,40 @@ public class MainActivity extends Activity {
                     float x = (int) event.getRawX();
                     float y = (int) event.getRawY();
 
-                    x -= v.getWidth()/2;
-                    y -= v.getHeight()/2;
+                    //x -= v.getWidth()/2;
+                    String test = "x - test: " + Float.toString(x);
+                    //y -= v.getHeight()/2;
+                    String test2 = "y - test: " + Float.toString(y);
 
+                    Log.d("x pos", test);
+                    Log.d("y pos", test2);
+                    Log.d("p1 pos", Integer.toString(game.getPlayerPosX()));
+                    Log.d("p2 pos", Integer.toString(game.getPlayerPosY()));
                     if ( Math.abs(x) > Math.abs(y)) {
                         if (x > 0) {
                             game.moveLeft();
+
                         }
-                        else game.moveRight();
+                        else {
+                            game.moveRight();
+
+                        }
+
                     }
                     else {
                         if (y > 0) {
                             game.moveUp();
+
                         }
-                        else game.moveDown();
+                        else {
+                            game.moveDown();
+
+                        }
                     }
                 }
                 return true;
             }
-        });
+        }); */
 
     }
 
@@ -196,6 +220,25 @@ public class MainActivity extends Activity {
         if (BT != null) {
             BT.onPause();
         }
+    }
+
+    public void moveUp(View v) {
+        game.setPlayerPosY(game.getPlayerPosY() - 1);
+        Log.d("mov", "up");
+    }
+
+    public void moveDown(View v) {
+        game.setPlayerPosY(game.getPlayerPosY() + 1);
+        Log.d("mov", "down");
+    }
+    public void moveLeft(View v) {
+        game.setPlayerPosX(game.getPlayerPosX() - 1);
+        Log.d("mov", "left");
+    }
+
+    public void moveRight(View v) {
+        game.setPlayerPosX(game.getPlayerPosX() + 1);
+        Log.d("mov", "right");
     }
 
 

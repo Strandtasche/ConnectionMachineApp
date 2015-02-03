@@ -39,7 +39,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="293dp"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/subFrame">
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -53,13 +54,63 @@
             android:layout_alignParentStart="true"
             android:layout_gravity="left|bottom" />
 
+        <FrameLayout
+            android:layout_width="165dp"
+            android:layout_height="150dp"
+            android:layout_gravity="right|center_vertical"
+            android:paddingRight="15dp">
+
+            <Button
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:text="@string/uparrow"
+                android:id="@+id/buttonUp"
+                android:onClick="moveUp"
+                android:layout_gravity="center_horizontal|top"
+
+                android:background="@drawable/mybutton2"
+                />
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="@string/rightArrow"
+                android:id="@+id/buttonRight"
+                android:onClick="moveRight"
+                android:layout_gravity="right|center_vertical"
+                android:background="@drawable/mybutton2" />
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="@string/LeftArrow"
+                android:id="@+id/buttonLeft"
+                android:onClick="moveLeft"
+                android:layout_gravity="left|center_vertical"
+                android:background="@drawable/mybutton2" />
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="@string/downArrow"
+                android:onClick="moveDown"
+                android:id="@+id/buttonDown"
+                android:layout_gravity="center_horizontal|bottom"
+                android:background="@drawable/mybutton2" />
+        </FrameLayout>
+
+        <!--
         <Button
             android:layout_width="190dp"
             android:layout_height="190dp"
-            android:background="@drawable/X"
+            android:background="@drawable/controllcross"
             android:id="@+id/buttonX"
             android:onClick="coordination"
             android:layout_gravity="right|center_vertical" />
+
+            -->
+
+
     </FrameLayout>
 
 </LinearLayout>

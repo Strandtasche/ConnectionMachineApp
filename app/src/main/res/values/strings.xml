@@ -9,5 +9,9 @@
     <string name="playButton">Get this party started</string>
     <string name="title_activity_game">GameActivity</string>
     <string name="credits">Credits</string>
+    <string name="LeftArrow">←</string>
+    <string name="downArrow">↓</string>
+    <string name="rightArrow">→</string>
+    <string name="uparrow">↑</string>
 
 </resources>
