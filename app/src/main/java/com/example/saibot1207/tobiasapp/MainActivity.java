@@ -215,6 +215,7 @@ public class MainActivity extends Activity {
         super.onPause();
 
         mStartButton.setEnabled(true);
+        mPlayButton.setEnabled(false);
 
         // Avoid crash if user exits the app before pressing start.
         if (BT != null) {

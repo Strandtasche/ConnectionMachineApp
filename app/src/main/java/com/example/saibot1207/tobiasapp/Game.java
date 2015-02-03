@@ -29,7 +29,16 @@ public class Game {
     }
 
     public void setPlayerPosX(int playerPosX) {
-        this.playerPosX = playerPosX;
+        if (playerPosX >= 0 && playerPosX  <= 23) {
+            this.playerPosX = playerPosX;
+        }
+        else if (playerPosX < 0) {
+            this.playerPosX = 23;
+        }
+        else if (playerPosX > 23) {
+            this.playerPosX = 0;
+        }
+
     }
 
     public int getPlayerPosY() {
@@ -37,7 +46,15 @@ public class Game {
     }
 
     public void setPlayerPosY(int playerPosY) {
-        this.playerPosY = playerPosY;
+        if (playerPosY >= 0 && playerPosY  <= 23) {
+            this.playerPosY = playerPosY;
+        }
+        else if (playerPosY < 0) {
+            this.playerPosY = 23;
+        }
+        else if (playerPosY > 23) {
+            this.playerPosY = 0;
+        }
     }
 
     public int getHitpoints() {
@@ -72,9 +89,7 @@ public class Game {
         this.confirmed = confirmed;
     }
 
-    public void draw() {
 
-    }
 
     public void intro() {
 
@@ -220,7 +235,7 @@ public class Game {
             while (playing && getHitpoints() > 0) {
                 loop = true;
                 setPlayerPosX(5);
-                setPlayerPosY(24);
+                setPlayerPosY(23);
                 while (loop) {
 
                     counter2++;
@@ -259,9 +274,47 @@ public class Game {
                     generateObstacles(msgBuffer, 2, 2, (int) (0.2* counter2 + 6), 200, 0);
 
                     for (int i = 0; i < (24 * 24); i++) {
-                        if ((i/24 == getPlayerPosX() || i/24 == getPlayerPosX() + 1) && (i % 24 == getPlayerPosY() || i % 24 == getPlayerPosY() +1 ) ) {
+                        if ((i/24 == getPlayerPosY() || i/24 == getPlayerPosY() + 1) && (i % 24 == getPlayerPosX() || i % 24 == getPlayerPosX() +1 ) ) {
+                            if (msgBuffer[i] == 0) {
+                                msgBuffer[i] = (byte) 200;
+                            }
+                            else {
+                                setHitpoints(getHitpoints() - 1);
+                                byte[] msgBuffer2 = new byte[24 * 24];
+                                byte[] msgBuffer3 = new byte[24 * 24];
+                                if ( i > 22 && i < 551 && i % 24 != 0 && i % 24 != 23) {
+                                    msgBuffer3[i] = (byte) 200;
+                                    msgBuffer3[i+1] = (byte) 200;
+                                    msgBuffer3[i-1] = (byte) 200;
+                                    msgBuffer3[i-25] = (byte) 200;
+                                    msgBuffer3[i-24] = (byte) 200;
+                                    msgBuffer3[i-23] = (byte) 200;
+                                    msgBuffer3[i+23] = (byte) 200;
+                                    msgBuffer3[i+24] = (byte) 200;
+                                    msgBuffer3[i+25] = (byte) 200;
+                                }
+                                else {
+                                    for( int m = 0; m < 576; m++) {
+                                        if (m % 5 == 0) {
+                                            msgBuffer3[3] = 200;
+                                        }
+                                    }
+                                }
 
 
+                                for( int k = 0; k < 15; k++) {
+                                    if (!BT.write(msgBuffer2)) {
+                                        loop = false;
+                                        playing = false;
+                                    }
+                                    if (!BT.write(msgBuffer3)) {
+                                        loop = false;
+                                        playing = false;
+                                    }
+                                }
+                                setPlayerPosX(5);
+                                setPlayerPosY(23);
+                            }
                         }
                     }
 

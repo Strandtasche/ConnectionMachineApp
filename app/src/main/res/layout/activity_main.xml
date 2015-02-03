@@ -10,20 +10,15 @@
         android:layout_gravity="center_horizontal"
         android:id="@+id/Framelayout">
 
-        <TextView
-            android:layout_width="326dp"
-            android:layout_height="79dp"
-            android:text="@string/instructionText"
-            android:id="@+id/textView"
-            android:layout_gravity="center_horizontal|top" />
-
         <Button
             android:id="@+id/startButton"
             android:layout_width="268dp"
             android:layout_height="wrap_content"
             android:onClick="start"
             android:text="@string/startText"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton2"
+            />
 
         <Button
             android:layout_width="wrap_content"
@@ -33,6 +28,29 @@
             android:onClick="play"
             android:enabled="false"
             android:layout_gravity="center_horizontal|bottom" />
+
+        <FrameLayout
+            android:layout_width="343dp"
+            android:layout_height="93dp"
+            android:layout_gravity="center_horizontal|top">
+
+            <TextView
+                android:layout_width="271dp"
+                android:layout_height="55dp"
+                android:text="@string/instructionText"
+                android:id="@+id/textView"
+                android:layout_gravity="center_horizontal|bottom"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:paddingTop="8dp"
+                android:text="One Step from Freedom"
+                android:id="@+id/textView2"
+                android:layout_gravity="center_horizontal|top" />
+        </FrameLayout>
 
     </FrameLayout>
 
