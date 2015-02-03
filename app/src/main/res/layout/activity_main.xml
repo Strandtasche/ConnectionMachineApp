@@ -6,7 +6,7 @@
 
     <FrameLayout
         android:layout_width="388dp"
-        android:layout_height="271dp"
+        android:layout_height="281dp"
         android:layout_gravity="center_horizontal"
         android:id="@+id/Framelayout">
 
@@ -33,32 +33,33 @@
             android:onClick="play"
             android:enabled="false"
             android:layout_gravity="center_horizontal|bottom" />
+
     </FrameLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="129dp"
-        android:layout_gravity="center_horizontal">
-
-    </RelativeLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="122dp"
+        android:layout_height="293dp"
         android:layout_gravity="center_horizontal">
 
-    </FrameLayout>
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/credits"
+            android:id="@+id/creditsButton"
+            android:onClick="displayCredits"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="left|bottom" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/credits"
-        android:id="@+id/creditsButton"
-        android:onClick="displayCredits"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="right" />
+        <Button
+            android:layout_width="190dp"
+            android:layout_height="190dp"
+            android:background="@drawable/X"
+            android:id="@+id/buttonX"
+            android:onClick="coordination"
+            android:layout_gravity="right|center_vertical" />
+    </FrameLayout>
 
 </LinearLayout>

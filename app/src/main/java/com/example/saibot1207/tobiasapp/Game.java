@@ -11,7 +11,7 @@ public class Game {
     private int sendDelay;
 
     private int playerPosX = 5;
-    private int playerPosY = 24;
+    private int playerPosY = 23;
     private int hitpoints = 3;
     private boolean confirmed = false;
 
@@ -241,22 +241,28 @@ public class Game {
 
                     // Fill message buffer.
                     byte[] msgBuffer = new byte[24 * 24];
-                    generateObstacles(msgBuffer, 3, 5, (int) (0.05 * counter2), 200, 0);
-                    generateObstacles(msgBuffer, 3, 6, (int) (0.05 * counter2), 200, 0);
-                    generateObstacles(msgBuffer, 3, 5, (int) (0.05 * counter2 + 6), 200, 0);
-                    generateObstacles(msgBuffer, 3, 6, (int) (0.05 * counter2 + 6), 200, 0);
-                    generateObstacles(msgBuffer, 2, 1, (int) (0.15 * counter2 + 3), 200, 0);
-                    generateObstacles(msgBuffer, 2, 1, (int) (0.15 * counter2 + 9), 200, 0);
-                    generateObstacles(msgBuffer, 4, 11, (int) (0.125 * counter2 + 9), 200, 0);
-                    generateObstacles(msgBuffer, 4, 11, (int) (0.125 * counter2 + 9), 200, 0);
-                    generateObstacles(msgBuffer, 7, 14, (int) (0.07 * counter2 + 9), 200, 0);
-                    generateObstacles(msgBuffer, 4, 18, (int) (0.04 * counter2 + 9), 200, 0);
-                    generateObstacles(msgBuffer, 4, 19, (int) (0.04 * counter2 + 9), 200, 0);
-                    generateObstacles(msgBuffer, 4, 19, (int) (0.3* counter2), 200, 0); //Posi wird nicht mehr benoetigt. Entfernen?
-                    generateObstacles(msgBuffer, 4, 16, (int) (0.3* counter2 + 1), 200, 0);
+
+                    generateObstacles(msgBuffer, 8, 20, (int) (0.3* counter2 + 1), 200, 0);
+                    generateObstacles(msgBuffer, 8, 19, (int) (0.3* counter2 + 1), 200, 0);
+                    generateObstacles(msgBuffer, 3, 13, (int) (0.2* counter2 + 4), 200, 0);
+                    generateObstacles(msgBuffer, 3, 15, (int) (0.2* counter2 + 4), 200, 0);
+                    generateObstacles(msgBuffer, 3, 14, (int) (0.2* counter2 + 4), 200, 0);
+                    generateObstacles(msgBuffer, 2, 13, (int) (0.2* counter2 + 6), 200, 0);
+                    generateObstacles(msgBuffer, 2, 15, (int) (0.2* counter2 + 6), 200, 0);
+                    generateObstacles(msgBuffer, 2, 14, (int) (0.2* counter2 + 6), 200, 0);
+                    generateObstacles(msgBuffer, 1, 9, (int) (0.2* counter2), 200, 0);
+                    generateObstacles(msgBuffer, 1, 9, (int) (0.2* counter2 + 5), 200, 0);
+                    generateObstacles(msgBuffer, 1, 9, (int) (0.2* counter2 + 9), 200, 0);
+                    generateObstacles(msgBuffer, 1, 8, (int) (0.2* counter2 + 8), 200, 0);
+                    generateObstacles(msgBuffer, 7, 5, (int) (0.2* counter2 + 3), 200, 0);
+                    generateObstacles(msgBuffer, 7, 4, (int) (0.2* counter2 + 3), 200, 0);
+                    generateObstacles(msgBuffer, 2, 2, (int) (0.2* counter2 + 6), 200, 0);
 
                     for (int i = 0; i < (24 * 24); i++) {
-                        //nothing yet.
+                        if ((i/24 == getPlayerPosX() || i/24 == getPlayerPosX() + 1) && (i % 24 == getPlayerPosY() || i % 24 == getPlayerPosY() +1 ) ) {
+
+
+                        }
                     }
 
                     // If write fails, the connection was probably closed by the server.
@@ -283,5 +289,20 @@ public class Game {
         for (int j = 0; j < length; j++) {
             target[24 * row + (posi + j) % 12 + column * 12] = (byte) intensity;
         }
+    }
+
+    public void moveUp() {
+        setPlayerPosY(getPlayerPosY() - 1);
+    }
+
+    public void moveDown() {
+        setPlayerPosY(getPlayerPosY() + 1);
+    }
+    public void moveLeft() {
+        setPlayerPosX(getPlayerPosX() - 1);
+    }
+
+    public void moveRight() {
+        setPlayerPosX(getPlayerPosX() + 1);
     }
 }
