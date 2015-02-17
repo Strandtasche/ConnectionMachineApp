@@ -296,7 +296,7 @@ public class Game {
                                 else {
                                     for( int m = 0; m < 576; m++) {
                                         if (m % 5 == 0) {
-                                            msgBuffer3[3] = 200;
+                                            msgBuffer3[3] = (byte) 200;
                                         }
                                     }
                                 }
