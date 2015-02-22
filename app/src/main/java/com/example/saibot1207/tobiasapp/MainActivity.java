@@ -55,6 +55,7 @@ public class MainActivity extends Activity {
         mButtonUp = (Button) findViewById(R.id.buttonUp);
         mButtonLeft = (Button) findViewById(R.id.buttonLeft);
         mButtonRight = (Button) findViewById(R.id.buttonRight);
+        game = new Game();
         /* mXBotton = (Button) findViewById(R.id.buttonX);
         mXBotton.setOnTouchListener(new View.OnTouchListener() {
 
@@ -175,6 +176,8 @@ public class MainActivity extends Activity {
                     }
                 });
 
+                game.printPlay();
+
                 game.intro2();
 
                 game.startgame();
@@ -213,6 +216,7 @@ public class MainActivity extends Activity {
     @Override
     public void onPause() {
         super.onPause();
+        game = new Game();
 
         mStartButton.setEnabled(true);
         mPlayButton.setEnabled(false);

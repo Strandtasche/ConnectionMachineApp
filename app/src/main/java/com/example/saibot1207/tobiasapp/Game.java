@@ -11,7 +11,7 @@ public class Game {
     private int sendDelay;
 
     private int playerPosX = 5;
-    private int playerPosY = 23;
+    private int playerPosY = 22;
     private int hitpoints = 3;
     private boolean confirmed = false;
 
@@ -215,6 +215,114 @@ public class Game {
         }
     }
 
+    public void printPlay() { // schreibt "press play" auf die Machine
+
+        byte[] msgBuffer = new byte[24 * 24];
+        for( int i = 2; i < 7; i++ ) {
+            msgBuffer[2 + i * 24] = (byte) 200;
+            msgBuffer[3 + i * 24] = (byte) 200;
+            msgBuffer[4 + i * 24] = (byte) 200;
+
+            msgBuffer[6 + i * 24] = (byte) 200;
+            msgBuffer[7 + i * 24] = (byte) 200;
+            msgBuffer[8 + i * 24] = (byte) 200;
+
+            msgBuffer[12 + i * 24] = (byte) 200;
+            msgBuffer[13 + i * 24] = (byte) 200;
+            msgBuffer[14 + i * 24] = (byte) 200;
+
+            msgBuffer[16 + i * 24] = (byte) 200;
+            msgBuffer[17 + i * 24] = (byte) 200;
+            msgBuffer[18 + i * 24] = (byte) 200;
+
+            msgBuffer[20 + i * 24] = (byte) 200;
+            msgBuffer[21 + i * 24] = (byte) 200;
+            msgBuffer[22 + i * 24] = (byte) 200;
+        }
+
+        msgBuffer[3 + 3 * 24] = (byte) 0;
+        msgBuffer[3 + 5 * 24] = (byte) 0;
+        msgBuffer[3 + 6 * 24] = (byte) 0;
+        msgBuffer[4 + 5 * 24] = (byte) 0;
+        msgBuffer[4 + 6 * 24] = (byte) 0;
+        msgBuffer[7 + 3 * 24] = (byte) 0;
+        msgBuffer[7 + 6 * 24] = (byte) 0;
+        msgBuffer[8 + 5 * 24] = (byte) 0;
+        msgBuffer[13 + 3 * 24] = (byte) 0;
+        msgBuffer[14 + 3 * 24] = (byte) 0;
+        msgBuffer[17 + 3 * 24] = (byte) 0;
+        msgBuffer[18 + 3 * 24] = (byte) 0;
+        msgBuffer[21 + 3 * 24] = (byte) 0;
+        msgBuffer[22 + 3 * 24] = (byte) 0;
+        msgBuffer[13 + 5 * 24] = (byte) 0;
+        msgBuffer[14 + 5 * 24] = (byte) 0;
+        msgBuffer[16 + 5 * 24] = (byte) 0;
+        msgBuffer[17 + 5 * 24] = (byte) 0;
+        msgBuffer[20 + 5 * 24] = (byte) 0;
+        msgBuffer[21 + 5 * 24] = (byte) 0;
+
+        for( int j = 14; j < 21; j++){
+            msgBuffer[3 + j * 24] = (byte) 200;
+            msgBuffer[8 + j * 24] = (byte) 200;
+            msgBuffer[13 + j * 24] = (byte) 200;
+            msgBuffer[16 + j * 24] = (byte) 200;
+            msgBuffer[13 + j * 24] = (byte) 200;
+            msgBuffer[20 + j * 24] = (byte) 200;
+        }
+
+        msgBuffer[13 + 14 * 24] = (byte) 0;
+        msgBuffer[16 + 14 * 24] = (byte) 0;
+        msgBuffer[20 + 14 * 24] = (byte) 0;
+        msgBuffer[20 + 15 * 24] = (byte) 0;
+
+        msgBuffer[4 + 14 * 24] = (byte) 200;
+        msgBuffer[5 + 14 * 24] = (byte) 200;
+        msgBuffer[6 + 14 * 24] = (byte) 200;
+        msgBuffer[7 + 14 * 24] = (byte) 200;
+        msgBuffer[7 + 15 * 24] = (byte) 200;
+        msgBuffer[7 + 16 * 24] = (byte) 200;
+        msgBuffer[7 + 17 * 24] = (byte) 200;
+        msgBuffer[6 + 17 * 24] = (byte) 200;
+        msgBuffer[5 + 17 * 24] = (byte) 200;
+        msgBuffer[4 + 17 * 24] = (byte) 200;
+        msgBuffer[9 + 20 * 24] = (byte) 200;
+        msgBuffer[10 + 20 * 24] = (byte) 200;
+        msgBuffer[11 + 20 * 24] = (byte) 200;
+        msgBuffer[14 + 14 * 24] = (byte) 200;
+        msgBuffer[15 + 14 * 24] = (byte) 200;
+        msgBuffer[14 + 18 * 24] = (byte) 200;
+        msgBuffer[15 + 18 * 24] = (byte) 200;
+        msgBuffer[18 + 14 * 24] = (byte) 200;
+        msgBuffer[22 + 14 * 24] = (byte) 200;
+        msgBuffer[19 + 15 * 24] = (byte) 200;
+        msgBuffer[21 + 15 * 24] = (byte) 200;
+
+
+
+        for( int k = 0; k < 50; k++){
+            if (!BT.write(msgBuffer)) {
+                //loop = false; //Fehlerbehandlung?
+            }
+            try {
+                // Delay for a moment.
+                // Note: Delaying the same amount of time every frame will not give you constant FPS.
+                Thread.sleep(sendDelay);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        try {
+            // Delay for a moment.
+            // Note: Delaying the same amount of time every frame will not give you constant FPS.
+            Thread.sleep(sendDelay);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void startgame() {
         boolean loop = true;
         boolean restarted = true;
@@ -235,7 +343,7 @@ public class Game {
             while (playing && getHitpoints() > 0) {
                 loop = true;
                 setPlayerPosX(5);
-                setPlayerPosY(23);
+                setPlayerPosY(22);
                 while (loop) {
 
                     counter2++;
@@ -307,9 +415,26 @@ public class Game {
                                         loop = false;
                                         playing = false;
                                     }
+
+                                    try {
+                                        // Delay for a moment.
+                                        // Note: Delaying the same amount of time every frame will not give you constant FPS.
+                                        Thread.sleep(sendDelay);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+
                                     if (!BT.write(msgBuffer3)) {
                                         loop = false;
                                         playing = false;
+                                    }
+
+                                    try {
+                                        // Delay for a moment.
+                                        // Note: Delaying the same amount of time every frame will not give you constant FPS.
+                                        Thread.sleep(sendDelay);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
                                     }
                                 }
                                 setPlayerPosX(5);
@@ -340,7 +465,7 @@ public class Game {
 
     private void generateObstacles(byte[] target, int length, int row, int posi, int intensity, int column) {
         for (int j = 0; j < length; j++) {
-            target[24 * row + (posi + j) % 12 + column * 12] = (byte) intensity;
+            target[24 * row + (posi + j) % 24 + column * 24] = (byte) intensity;
         }
     }
 

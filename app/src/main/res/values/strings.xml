@@ -6,7 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="startText">Connect</string>
     <string name="instructionText">To start playing, please press Connect and Ready afterwards. \n Good luck, have fun!</string>
-    <string name="playButton">Ready</string>
+    <string name="playButton">Play</string>
     <string name="title_activity_game">GameActivity</string>
     <string name="credits">Credits</string>
     <string name="LeftArrow">←</string>
