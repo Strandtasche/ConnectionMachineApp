@@ -1,21 +1,18 @@
 package com.example.saibot1207.tobiasapp;
 
-import android.app.Activity;
+/**
+ * Created by saibot1207 on 23.02.15.
+ */
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
+import android.app.Activity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
-import android.view.MotionEvent;
-import com.example.saibot1207.tobiasapp.Game;
 
-import java.util.Arrays;
-
-public class MainActivity extends Activity {
+public class Tab2 extends Activity {
 
     private LEDMatrixBTConn BT;
     protected static final String REMOTE_BT_DEVICE_NAME = "ledpi-teco";
@@ -46,8 +43,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.tab2);
 
+        Log.d("is this called?", "yes it is");
 
         mStartButton = (Button) findViewById(R.id.startButton);
         mPlayButton = (Button) findViewById(R.id.playButton);
@@ -248,3 +246,4 @@ public class MainActivity extends Activity {
 
 
 }
+
