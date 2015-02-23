@@ -7,9 +7,11 @@ package com.example.saibot1207.tobiasapp;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
+import android.view.View;
 import android.widget.TabHost;
 import android.app.TabActivity;
 import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TextView;
 
 public class TabBar extends TabActivity implements OnTabChangeListener{
 
@@ -23,31 +25,38 @@ public class TabBar extends TabActivity implements OnTabChangeListener{
 
         tabHost = getTabHost();
 
+
+
+
         tabHost.setOnTabChangedListener(this);
 
         TabHost.TabSpec spec;
         Intent intent;
 
         intent = new Intent().setClass(this, Tab1.class);
-        spec = tabHost.newTabSpec("First").setIndicator("")
+        spec = tabHost.newTabSpec("First").setIndicator("Settings")
                 .setContent(intent);
 
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, Tab2.class);
-        spec = tabHost.newTabSpec("Second").setIndicator("")
+        spec = tabHost.newTabSpec("Second").setIndicator("Game")
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, Tab3.class);
-        spec = tabHost.newTabSpec("Third").setIndicator("")
+        spec = tabHost.newTabSpec("Third").setIndicator("Credits")
                 .setContent(intent);
+
         tabHost.addTab(spec);
+
+
+
 
         tabHost.getTabWidget().getChildAt(1).setBackgroundColor(-7829368);
         tabHost.getTabWidget().getChildAt(2).setBackgroundColor(-7829368);
 
-        tabHost.getTabWidget().setCurrentTab(0);
+        tabHost.getTabWidget().setCurrentTab(1);
         tabHost.getTabWidget().getChildAt(0).setBackgroundColor(-7829368);
 
 
