@@ -3,12 +3,37 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
     <!--  Screen Design for Sport tab -->
-    <TextView android:text="SPORT TAB DATA"
+    <TextView android:text="@string/creator"
         android:padding="15dip"
-        android:textSize="18dip"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
+        android:textSize="20sp"
+        android:layout_width="289dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:id="@+id/creator"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:text="@string/Credits"
+        android:id="@+id/textView3"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.11" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_gravity="center_horizontal"
+        android:adjustViewBounds="true"
+        android:src="@drawable/teco"
+        android:onClick="openTeco"
+        android:contentDescription="Teco Logo" />
+
 </LinearLayout>

@@ -13,5 +13,7 @@
     <string name="downArrow">↓</string>
     <string name="rightArrow">→</string>
     <string name="uparrow">↑</string>
+    <string name="Credits">This App was created as part of the lecture "Mobile Computing und das Internet der Dinge"</string>
+    <string name="creator">by Tobias Hornberger</string>
 
 </resources>
