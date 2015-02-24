@@ -19,11 +19,12 @@
         android:textStyle="bold" />
 
     <TextView
-        android:layout_width="218dp"
+        android:layout_width="283dp"
         android:layout_height="71dp"
         android:text="@string/Credits"
         android:id="@+id/textView3"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="gravity" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -31,14 +32,14 @@
         android:id="@+id/imageView"
         android:layout_gravity="center_horizontal"
         android:adjustViewBounds="true"
-        android:src="@drawable/teco"
+        android:src="@drawable/teco2"
         android:onClick="openTeco"
         android:contentDescription="Teco Logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="to be used with the Connection Machine"
         android:id="@+id/textView4"
         android:layout_gravity="center_horizontal"
