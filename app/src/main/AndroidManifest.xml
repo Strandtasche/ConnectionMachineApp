@@ -22,10 +22,10 @@
         <activity
             android:name=".GameActivity"
             android:label="@string/title_activity_game"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".TabBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.saibot1207.tobiasapp.MainActivity" />
+                android:value="com.example.saibot1207.tobiasapp.TabBar" />
         </activity>
         <activity android:name=".Tab1" ></activity>
         <activity android:name=".Tab2"  ></activity>

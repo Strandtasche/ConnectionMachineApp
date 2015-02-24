@@ -22,7 +22,21 @@ public class Tab3 extends Activity{
 
     public void openTeco(View v) {
         try {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://pcs.tm.kit.edu/teachingsws2014_492.php"));
+            startActivity(browserIntent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "No application can handle this request."
+                    + " Please install a webbrowser", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+    public void openCM(View v) {
+        try {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://pcs.tm.kit.edu/teachingsws2014_492.php"));
             startActivity(browserIntent);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(this, "No application can handle this request."

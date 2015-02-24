@@ -53,11 +53,11 @@ public class TabBar extends TabActivity implements OnTabChangeListener{
 
 
 
-        tabHost.getTabWidget().getChildAt(1).setBackgroundColor(-7829368);
+        tabHost.getTabWidget().getChildAt(0).setBackgroundColor(-7829368);
         tabHost.getTabWidget().getChildAt(2).setBackgroundColor(-7829368);
 
-        tabHost.getTabWidget().setCurrentTab(1);
-        tabHost.getTabWidget().getChildAt(0).setBackgroundColor(-7829368);
+        tabHost.getTabWidget().setCurrentTab(2);
+        //tabHost.getTabWidget().getChildAt(1).setBackgroundColor(-1);
 
 
     }
