@@ -11,7 +11,21 @@
             android:defaultValue=""/>
     </PreferenceCategory>
     <PreferenceCategory
-        android:title="Difficulty">
+        android:title="Difficulty"
+        android:summary="Todo">
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Intro">
+            <CheckBoxPreference
+                android:key="intro"
+                android:title="Disable Intro"
+                android:summary="Show Intro on restart?"
+                >
+
+                </CheckBoxPreference>
 
     </PreferenceCategory>
 </PreferenceScreen>

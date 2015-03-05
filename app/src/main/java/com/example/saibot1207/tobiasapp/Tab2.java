@@ -4,8 +4,10 @@ package com.example.saibot1207.tobiasapp;
  * Created by saibot1207 on 23.02.15.
  */
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -15,7 +17,7 @@ import android.widget.Toast;
 public class Tab2 extends Activity {
 
     private LEDMatrixBTConn BT;
-    protected static final String REMOTE_BT_DEVICE_NAME = "ledpi-teco";
+    protected String REMOTE_BT_DEVICE_NAME = "ledpi-teco";
 
     // Remote display x and y size.
     protected static final int X_SIZE = 24;
@@ -39,6 +41,7 @@ public class Tab2 extends Activity {
     private Button mButtonRight;
     private int sendDelay;
     private boolean proceed;
+    private boolean intro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,11 @@ public class Tab2 extends Activity {
         mButtonLeft = (Button) findViewById(R.id.buttonLeft);
         mButtonRight = (Button) findViewById(R.id.buttonRight);
         game = new Game();
+
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        REMOTE_BT_DEVICE_NAME = sharedPref.getString(Tab1.BT_SELECT_DEVICE_KEY, "");
+        intro = sharedPref.getBoolean("intro", true);
         /* mXBotton = (Button) findViewById(R.id.buttonX);
         mXBotton.setOnTouchListener(new View.OnTouchListener() {
 
@@ -165,7 +173,7 @@ public class Tab2 extends Activity {
                 game.setBT(BT);
                 game.setSendDelay(sendDelay);
 
-                //game.intro();
+                game.intro(intro);
 
                 runOnUiThread(new Runnable() {
                     @Override
@@ -176,7 +184,7 @@ public class Tab2 extends Activity {
 
                 game.printPlay();
 
-                game.intro2();
+                game.intro2(intro);
 
                 game.startgame();
 

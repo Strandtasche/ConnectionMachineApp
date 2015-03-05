@@ -9,17 +9,20 @@ public class Settings {
         this.difficulty = 2;
         this.controls = false;
         this.intro = true;
+        this.device = "";
     }
 
-    public Settings(int difficulty, boolean controls, boolean intro) {
+    public Settings(int difficulty, boolean controls, boolean intro, String device) {
         this.difficulty = difficulty;
         this.controls = controls;
         this.intro = intro;
+        this.device = device;
     }
 
     private int difficulty;
     private boolean controls;
     private boolean intro;
+    private String device;
 
     public int getDifficulty() {
         return difficulty;

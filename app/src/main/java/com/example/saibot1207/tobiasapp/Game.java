@@ -91,8 +91,11 @@ public class Game {
 
 
 
-    public void intro() {
+    public void intro(boolean skip) {
 
+        if ( skip ) {
+            return;
+        }
         boolean loop = true;
         // Prepare variables for making the pattern.
         int counter = 0;
@@ -155,7 +158,11 @@ public class Game {
         }
     }
 
-    public void intro2() {
+    public void intro2(boolean skip) {
+
+        if (skip){
+            return;
+        }
         int counter2 = 0;
         boolean loop = true;
         int counter = 0;

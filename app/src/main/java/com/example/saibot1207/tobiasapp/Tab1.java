@@ -19,6 +19,9 @@ public class Tab1 extends Activity {
         NO_DEVICE
     }
 
+    protected static final String BT_SELECT_DEVICE_KEY = "deviceBluetooth";
+    protected static final String NO_DEVICE_SELECTED = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +34,7 @@ public class Tab1 extends Activity {
 
 
         settingsFragment.getFragmentManager().executePendingTransactions();
-        final DynamicListPreference btDevices = (DynamicListPreference) settingsFragment.findPreference("settingsBluetooth");
+        final DynamicListPreference btDevices = (DynamicListPreference) settingsFragment.findPreference(BT_SELECT_DEVICE_KEY);
         setAvailableBTDevicesOnList(btDevices);
         btDevices.setOnClickListener(new DynamicListPreference.DynamicListPreferenceOnClickListener() {
             @Override
@@ -82,6 +85,6 @@ public class Tab1 extends Activity {
         }
         listPreference.setEntries(names);
         listPreference.setEntryValues(values);
-        listPreference.setDefaultValue("");
+        listPreference.setDefaultValue(NO_DEVICE_SELECTED);
     }
 }
