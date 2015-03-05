@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <!--  Screen Design for Food tab -->
-    <TextView android:text="FOOD TAB DATA"
-        android:padding="15dip"
-        android:textSize="18dip"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+    android:layout_height="match_parent"
+    >
+    <!--<CheckBoxPreference-->
+        <!--android:key="pref_sync"-->
+        <!--android:title="@string/pref_sync"-->
+        <!--android:summary="@string/pref_sync_summ"-->
+        <!--android:defaultValue="true" />-->
+    <!--<ListPreference-->
+        <!--android:dependency="pref_sync"-->
+        <!--android:key="pref_syncConnectionType"-->
+        <!--android:title="@string/pref_syncConnectionType"-->
+        <!--android:dialogTitle="@string/pref_syncConnectionType"-->
+        <!--android:entries="@array/pref_syncConnectionTypes_entries"-->
+        <!--android:entryValues="@array/pref_syncConnectionTypes_values"-->
+        <!--android:defaultValue="@string/pref_syncConnectionTypes_default" />-->
+</PreferenceScreen>

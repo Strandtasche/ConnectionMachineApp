@@ -36,7 +36,7 @@ public class Tab3 extends Activity{
 
     public void openCM(View v) {
         try {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://pcs.tm.kit.edu/teachingsws2014_492.php"));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.teco.edu/cm/dev/"));
             startActivity(browserIntent);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(this, "No application can handle this request."
