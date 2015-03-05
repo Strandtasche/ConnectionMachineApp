@@ -16,5 +16,8 @@
     <string name="Credits">This App was created as part of the lecture\n \"Mobile Computing\n und das Internet der Dinge\"</string>
     <string name="creator">by Tobias Hornberger</string>
     <string name="CM">Connection Machine</string>
+    <string name="disabledBluetooth">Bluetooth seems to be turned off</string>
+    <string name="noDeviceBluetooth">Bluetooth can\'t detect any paired devices</string>
+    <string name="noAdapterBluetooth">It seems like there is no Bluetooth installed on this device</string>
 
 </resources>
