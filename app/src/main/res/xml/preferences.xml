@@ -24,7 +24,9 @@
                 android:key="intro"
                 android:title="Disable Intro"
                 android:summary="Show Intro on restart?"
+                android:onClick="testMethod"
                 >
+
 
                 </CheckBoxPreference>
 

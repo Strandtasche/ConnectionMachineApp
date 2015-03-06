@@ -24,7 +24,7 @@ import android.widget.CheckBox;
 import java.util.Set;
 
 
-public class Tab1 extends Activity implements OnClickListener {
+public class Tab1 extends Activity {
 
     private enum BluetoothError {
         NO_ADAPTER,
@@ -41,10 +41,17 @@ public class Tab1 extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        checkBox = (CheckBox) findViewById(R.id.introCheckBox);
-        checkBox.setOnClickListener(this);
+        /*checkBox = (CheckBox) findViewById(R.id.introCheckBox);
+        checkBox.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                savePreferences("intro", checkBox.isChecked());
+                //finish();
+            }
+        });
         loadSavedPreferences();
-
+*/
 
 
         SettingsFragment settingsFragment = new SettingsFragment();
@@ -130,11 +137,6 @@ public class Tab1 extends Activity implements OnClickListener {
         editor.commit();
     }
 
-    @Override
-    public void onClick(View v) {
-        // TODO Auto-generated method stub
-        savePreferences("intro", checkBox.isChecked());
-        //finish();
-    }
+
 
 }
