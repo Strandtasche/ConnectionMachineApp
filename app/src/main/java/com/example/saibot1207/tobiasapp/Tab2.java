@@ -61,7 +61,7 @@ public class Tab2 extends Activity {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         REMOTE_BT_DEVICE_NAME = sharedPref.getString(Tab1.BT_SELECT_DEVICE_KEY, "");
-        intro = sharedPref.getBoolean("intro", true);
+        intro = sharedPref.getBoolean("intro", false);
         /* mXBotton = (Button) findViewById(R.id.buttonX);
         mXBotton.setOnTouchListener(new View.OnTouchListener() {
 

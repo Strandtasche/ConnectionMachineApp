@@ -5,13 +5,26 @@ package com.example.saibot1207.tobiasapp;
  */
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
+import android.preference.PreferenceManager;
+import android.view.View;
+import android.widget.CheckBox;
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.CheckBox;
 
 import java.util.Set;
 
 
-public class Tab1 extends Activity {
+public class Tab1 extends Activity implements OnClickListener {
 
     private enum BluetoothError {
         NO_ADAPTER,
@@ -19,12 +32,20 @@ public class Tab1 extends Activity {
         NO_DEVICE
     }
 
+    private CheckBox checkBox;
+
     protected static final String BT_SELECT_DEVICE_KEY = "deviceBluetooth";
     protected static final String NO_DEVICE_SELECTED = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        checkBox = (CheckBox) findViewById(R.id.introCheckBox);
+        checkBox.setOnClickListener(this);
+        loadSavedPreferences();
+
+
 
         SettingsFragment settingsFragment = new SettingsFragment();
         // Display the fragment as the main content.
@@ -87,4 +108,33 @@ public class Tab1 extends Activity {
         listPreference.setEntryValues(values);
         listPreference.setDefaultValue(NO_DEVICE_SELECTED);
     }
+
+    private void loadSavedPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        boolean checkBoxValue = sharedPreferences.getBoolean("intro", false);
+        if (checkBoxValue) {
+            checkBox.setChecked(true);
+        } else {
+            checkBox.setChecked(false);
+        }
+
+
+    }
+
+    private void savePreferences(String key, boolean value) {
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        Editor editor = sharedPreferences.edit();
+        editor.putBoolean(key, value);
+        editor.commit();
+    }
+
+    @Override
+    public void onClick(View v) {
+        // TODO Auto-generated method stub
+        savePreferences("intro", checkBox.isChecked());
+        //finish();
+    }
+
 }

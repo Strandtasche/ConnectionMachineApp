@@ -20,6 +20,7 @@
     <PreferenceCategory
         android:title="Intro">
             <CheckBoxPreference
+                android:id="@+id/introCheckBox"
                 android:key="intro"
                 android:title="Disable Intro"
                 android:summary="Show Intro on restart?"
