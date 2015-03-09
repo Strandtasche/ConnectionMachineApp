@@ -392,6 +392,7 @@ public class Game {
                         if ((i/24 == getPlayerPosY() || i/24 == getPlayerPosY() + 1) && (i % 24 == getPlayerPosX() || i % 24 == getPlayerPosX() +1 ) ) {
                             if (msgBuffer[i] == 0) {
                                 msgBuffer[i] = (byte) 200;
+                                // collision detection
                             }
                             else {
                                 setHitpoints(getHitpoints() - 1);
