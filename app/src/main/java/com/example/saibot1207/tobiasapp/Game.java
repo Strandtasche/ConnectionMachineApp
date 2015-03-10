@@ -50,10 +50,10 @@ public class Game {
             this.playerPosY = playerPosY;
         }
         else if (playerPosY < 0) {
-            this.playerPosY = 23;
+            this.playerPosY = 0; // make it not go around.
         }
         else if (playerPosY > 23) {
-            this.playerPosY = 0;
+            this.playerPosY = 23; // make it not go around.
         }
     }
 
@@ -329,6 +329,80 @@ public class Game {
         }
     }
 
+    public void printWin() { // schreibt "Win" auf die Machine
+
+        byte[] msgBuffer = new byte[24 * 24];
+        for( int i = 2; i < 8; i++){
+            msgBuffer[8 + i * 24] = (byte) 200;
+            msgBuffer[11 + i * 24] = (byte) 200;
+            msgBuffer[12 + i * 24] = (byte) 200;
+
+        }
+        msgBuffer[2 + 2 * 24] = (byte) 200;
+        msgBuffer[6 + 2 * 24] = (byte) 200;
+        msgBuffer[9 + 2 * 24] = (byte) 200;
+        msgBuffer[10 + 2 * 24] = (byte) 200;
+        msgBuffer[3 + 3 * 24] = (byte) 200;
+        msgBuffer[5 + 3 * 24] = (byte) 200;
+        msgBuffer[4 + 4 * 24] = (byte) 200;
+        msgBuffer[4 + 5 * 24] = (byte) 200;
+        msgBuffer[4 + 6 * 24] = (byte) 200;
+        msgBuffer[4 + 7 * 24] = (byte) 200;
+        msgBuffer[9 + 7 * 24] = (byte) 200;
+        msgBuffer[10 + 7 * 24] = (byte) 200;
+        msgBuffer[13 + 7 * 24] = (byte) 200;
+        msgBuffer[14 + 7 * 24] = (byte) 200;
+
+        for( int i = 14; i < 21; i++){
+            msgBuffer[11 + i * 24] = (byte) 200;
+            msgBuffer[12 + i * 24] = (byte) 200;
+            msgBuffer[16 + i * 24] = (byte) 200;
+        }
+
+        msgBuffer[2 + 14 * 24] = (byte) 200;
+        msgBuffer[2 + 15 * 24] = (byte) 200;
+        msgBuffer[3 + 16 * 24] = (byte) 200;
+        msgBuffer[3 + 17 * 24] = (byte) 200;
+        msgBuffer[4 + 18 * 24] = (byte) 200;
+        msgBuffer[4 + 19 * 24] = (byte) 200;
+        msgBuffer[5 + 16 * 24] = (byte) 200;
+        msgBuffer[5 + 17 * 24] = (byte) 200;
+        msgBuffer[6 + 18 * 24] = (byte) 200;
+        msgBuffer[6 + 19 * 24] = (byte) 200;
+        msgBuffer[7 + 16 * 24] = (byte) 200;
+        msgBuffer[7 + 17 * 24] = (byte) 200;
+        msgBuffer[8 + 14 * 24] = (byte) 200;
+        msgBuffer[9 + 15 * 24] = (byte) 200;
+
+        msgBuffer[13 + 15 * 24] = (byte) 200;
+        msgBuffer[15 + 18 * 24] = (byte) 200;
+        msgBuffer[14 + 16 * 24] = (byte) 200;
+        msgBuffer[14 + 17 * 24] = (byte) 200;
+
+
+
+        for( int k = 0; k < 50; k++){
+            if (!BT.write(msgBuffer)) {
+                //loop = false; //Fehlerbehandlung?
+            }
+            try {
+                // Delay for a moment.
+                // Note: Delaying the same amount of time every frame will not give you constant FPS.
+                Thread.sleep(sendDelay);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        try {
+            // Delay for a moment.
+            // Note: Delaying the same amount of time every frame will not give you constant FPS.
+            Thread.sleep(sendDelay);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void startgame() {
         boolean loop = true;
@@ -371,15 +445,18 @@ public class Game {
 
                     // Fill message buffer.
                     byte[] msgBuffer = new byte[24 * 24];
-
+                    /*int speed1 = (int) (Math.random() * 3);
+                    int speed2 = (int) (Math.random() * 3);
+                    int speed3 = (int) (Math.random() * 3);
+*/
                     generateObstacles(msgBuffer, 8, 20, (int) (0.3* counter2 + 1), 200, 0);
                     generateObstacles(msgBuffer, 8, 19, (int) (0.3* counter2 + 1), 200, 0);
-                    generateObstacles(msgBuffer, 3, 13, (int) (0.2* counter2 + 4), 200, 0);
+                    generateObstacles(msgBuffer, 3, 13, (int) (0.2 * counter2 + 4), 200, 0);
                     generateObstacles(msgBuffer, 3, 15, (int) (0.2* counter2 + 4), 200, 0);
                     generateObstacles(msgBuffer, 3, 14, (int) (0.2* counter2 + 4), 200, 0);
-                    generateObstacles(msgBuffer, 2, 13, (int) (0.2* counter2 + 6), 200, 0);
-                    generateObstacles(msgBuffer, 2, 15, (int) (0.2* counter2 + 6), 200, 0);
-                    generateObstacles(msgBuffer, 2, 14, (int) (0.2* counter2 + 6), 200, 0);
+                    generateObstacles(msgBuffer, 2, 13, (int) (0.2 * counter2 + 6), 200, 0);
+                    generateObstacles(msgBuffer, 2, 15, (int) (0.2 * counter2 + 6), 200, 0);
+                    generateObstacles(msgBuffer, 2, 14, (int) (0.2 * counter2 + 6), 200, 0);
                     generateObstacles(msgBuffer, 1, 9, (int) (0.2* counter2), 200, 0);
                     generateObstacles(msgBuffer, 1, 9, (int) (0.2* counter2 + 5), 200, 0);
                     generateObstacles(msgBuffer, 1, 9, (int) (0.2* counter2 + 9), 200, 0);
@@ -387,12 +464,20 @@ public class Game {
                     generateObstacles(msgBuffer, 7, 5, (int) (0.2* counter2 + 3), 200, 0);
                     generateObstacles(msgBuffer, 7, 4, (int) (0.2* counter2 + 3), 200, 0);
                     generateObstacles(msgBuffer, 2, 2, (int) (0.2* counter2 + 6), 200, 0);
+                    generateObstacles(msgBuffer, 3, 18, (int) (0.2* ((240 - counter2) % 240) + 6), 200, 0);
+                    generateObstacles(msgBuffer, 3, 2, (int) (0.2* ((240 - counter2) % 240) + 15), 200, 0);
+                    generateObstacles(msgBuffer, 3, 14, (int) (0.2 * ((240 - counter2) % 240) + 11), 200, 0);
+
 
                     for (int i = 0; i < (24 * 24); i++) {
                         if ((i/24 == getPlayerPosY() || i/24 == getPlayerPosY() + 1) && (i % 24 == getPlayerPosX() || i % 24 == getPlayerPosX() +1 ) ) {
                             if (msgBuffer[i] == 0) {
                                 msgBuffer[i] = (byte) 200;
                                 // collision detection
+                            }
+                            else if (getPlayerPosY() == 0) {
+                                printWin();
+                                break;
                             }
                             else {
                                 setHitpoints(getHitpoints() - 1);
