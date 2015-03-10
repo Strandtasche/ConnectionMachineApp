@@ -107,6 +107,16 @@
                 android:background="@drawable/mybutton2" />
         </FrameLayout>
 
+        <TextView
+            android:layout_width="190dp"
+            android:layout_height="137dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="3 Hitpoints"
+            android:id="@+id/hpText"
+            android:layout_gravity="left|top"
+            android:paddingLeft="45dp"
+            android:paddingTop="45dp" />
+
         <!--
         <Button
             android:layout_width="190dp"

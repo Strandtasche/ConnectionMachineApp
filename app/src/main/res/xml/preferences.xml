@@ -13,22 +13,43 @@
     <PreferenceCategory
         android:title="Difficulty"
         android:summary="Todo">
+        <CheckBoxPreference
+            android:id="@+id/difficulty"
+            android:key="difficulty"
+            android:title="Hardmode"
+            android:summary="Are you good enough?"
+            android:defaultValue="false"
+            >
 
+
+        </CheckBoxPreference>
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Intro">
+        android:title="App Behavior">
             <CheckBoxPreference
                 android:id="@+id/introCheckBox"
                 android:key="intro"
                 android:title="Disable Intro"
                 android:summary="Show Intro on restart?"
-                android:onClick="testMethod"
+                android:defaultValue="true"
+
                 >
 
 
                 </CheckBoxPreference>
+             <CheckBoxPreference
+                android:id="@+id/vibrateCheckBox"
+                android:defaultValue="true"
+                android:key="vibrate"
+                android:title="Disable Vibrations"
+                android:summary="Vibrate on Failure?"
+
+            >
+
+
+        </CheckBoxPreference>
 
     </PreferenceCategory>
 </PreferenceScreen>

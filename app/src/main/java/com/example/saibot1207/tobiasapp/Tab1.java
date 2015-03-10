@@ -36,6 +36,8 @@ public class Tab1 extends Activity {
 
     protected static final String BT_SELECT_DEVICE_KEY = "deviceBluetooth";
     protected static final String NO_DEVICE_SELECTED = "";
+    protected static final String GAMEPLAY_VIBRATE = "vibrate";
+    protected static final String GAMEPLAY_HARDMODE = "difficulty";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

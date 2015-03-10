@@ -418,6 +418,7 @@ public class Game {
         while (restarted) {
             boolean playing = true;
             setHitpoints(3);
+            Tab2.setDisplayedHP(getHitpoints());
             int counter2 = 0;
 
 
@@ -481,6 +482,7 @@ public class Game {
                             }
                             else {
                                 setHitpoints(getHitpoints() - 1);
+                                Tab2.setDisplayedHP(getHitpoints());
                                 byte[] msgBuffer2 = new byte[24 * 24];
                                 byte[] msgBuffer3 = new byte[24 * 24];
                                 if ( i > 22 && i < 551 && i % 24 != 0 && i % 24 != 23) {
@@ -531,7 +533,8 @@ public class Game {
                                     }
                                 }
                                 setPlayerPosX(5);
-                                setPlayerPosY(23);
+                                setPlayerPosY(22);
+
                             }
                         }
                     }

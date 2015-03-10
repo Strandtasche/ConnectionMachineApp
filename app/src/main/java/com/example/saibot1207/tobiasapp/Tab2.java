@@ -7,11 +7,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Tab2 extends Activity {
@@ -39,9 +43,24 @@ public class Tab2 extends Activity {
     private Button mButtonDown;
     private Button mButtonLeft;
     private Button mButtonRight;
+    private static TextView mTextView;
+    private static Vibrator v;
     private int sendDelay;
     private boolean proceed;
     private boolean intro;
+    private static SharedPreferences sharedPref;
+
+
+
+    public static Handler UIHandler;
+
+    static
+    {
+        UIHandler = new Handler(Looper.getMainLooper());
+    }
+    public static void runOnUI(Runnable runnable) {
+        UIHandler.post(runnable);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +75,13 @@ public class Tab2 extends Activity {
         mButtonUp = (Button) findViewById(R.id.buttonUp);
         mButtonLeft = (Button) findViewById(R.id.buttonLeft);
         mButtonRight = (Button) findViewById(R.id.buttonRight);
+        mTextView = (TextView) findViewById(R.id.hpText);
         game = new Game();
 
+        v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         REMOTE_BT_DEVICE_NAME = sharedPref.getString(Tab1.BT_SELECT_DEVICE_KEY, "");
         intro = sharedPref.getBoolean("intro", false);
         /* mXBotton = (Button) findViewById(R.id.buttonX);
@@ -126,6 +148,19 @@ public class Tab2 extends Activity {
         toast.show();
     }
 
+    public static void setDisplayedHP(final int i)
+    {
+        runOnUI(new Runnable() {
+            @Override
+            public void run() {
+                mTextView.setText(i + " Hitspoints");
+                if (!sharedPref.getBoolean(Tab1.GAMEPLAY_VIBRATE, true) ) {
+                    v.vibrate(40l);
+                }
+            }
+        });
+    }
+
     public void start(View v) {
         mStartButton.setEnabled(false);
         proceed = false;
@@ -182,9 +217,17 @@ public class Tab2 extends Activity {
                     }
                 });
 
+                /*runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mTextView.setText("true");
+                    }
+                });*/
+
                 game.printPlay();
 
                 game.intro2(intro);
+
 
                 game.startgame();
 
@@ -222,15 +265,24 @@ public class Tab2 extends Activity {
     @Override
     public void onPause() {
         super.onPause();
-        game = new Game();
+
 
         mStartButton.setEnabled(true);
         mPlayButton.setEnabled(false);
+
+        Log.d("called", "yes it is");
 
         // Avoid crash if user exits the app before pressing start.
         if (BT != null) {
             BT.onPause();
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        Log.d("stopped", "so true man");
     }
 
     public void moveUp(View v) {
