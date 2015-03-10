@@ -153,7 +153,7 @@ public class Tab2 extends Activity {
         runOnUI(new Runnable() {
             @Override
             public void run() {
-                mTextView.setText(i + " Hitspoints");
+                mTextView.setText(i + " Hitpoints");
                 if (!sharedPref.getBoolean(Tab1.GAMEPLAY_VIBRATE, true) ) {
                     v.vibrate(40l);
                 }
@@ -207,6 +207,7 @@ public class Tab2 extends Activity {
 
                 game.setBT(BT);
                 game.setSendDelay(sendDelay);
+                game.setContext(getApplicationContext());
 
                 game.intro(intro);
 
@@ -273,16 +274,44 @@ public class Tab2 extends Activity {
         Log.d("called", "yes it is");
 
         // Avoid crash if user exits the app before pressing start.
-        if (BT != null) {
-            BT.onPause();
-        }
+//        if (BT != null) {
+//            BT.onPause();
+//        }
     }
 
     @Override
     public void onStop() {
+        if ( BT != null) {
+            BT.closeConnection();
+        }
         super.onStop();
 
         Log.d("stopped", "so true man");
+        if (BT != null) {
+            BT.onPause();
+        }
+
+
+    }
+
+    @Override
+    public void onDestroy() {
+        if ( BT != null) {
+            BT.closeConnection();
+        }
+        super.onDestroy();
+
+        Log.d("Destroyed.", "so dead man");
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        REMOTE_BT_DEVICE_NAME = sharedPref.getString(Tab1.BT_SELECT_DEVICE_KEY, "");
+        intro = sharedPref.getBoolean("intro", false);
     }
 
     public void moveUp(View v) {

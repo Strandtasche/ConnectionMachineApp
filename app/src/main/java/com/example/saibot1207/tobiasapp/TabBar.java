@@ -87,4 +87,10 @@ public class TabBar extends TabActivity implements OnTabChangeListener{
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        tabHost.setCurrentTab(1);
+    }
 }

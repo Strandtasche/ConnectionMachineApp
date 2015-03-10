@@ -1,5 +1,11 @@
 package com.example.saibot1207.tobiasapp;
 
+import android.content.Context;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Toast;
+
 import java.util.Arrays;
 
 /**
@@ -9,6 +15,16 @@ public class Game {
 
     private LEDMatrixBTConn BT;
     private int sendDelay;
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    private Context context;
 
     private int playerPosX = 5;
     private int playerPosY = 22;
@@ -426,7 +442,7 @@ public class Game {
                 loop = true;
                 setPlayerPosX(5);
                 setPlayerPosY(22);
-                while (loop) {
+                while (playing && getHitpoints() > 0) {
 
                     counter2++;
 
@@ -448,8 +464,7 @@ public class Game {
                     byte[] msgBuffer = new byte[24 * 24];
                     /*int speed1 = (int) (Math.random() * 3);
                     int speed2 = (int) (Math.random() * 3);
-                    int speed3 = (int) (Math.random() * 3);
-*/
+                    int speed3 = (int) (Math.random() * 3); */
                     generateObstacles(msgBuffer, 8, 20, (int) (0.3* counter2 + 1), 200, 0);
                     generateObstacles(msgBuffer, 8, 19, (int) (0.3* counter2 + 1), 200, 0);
                     generateObstacles(msgBuffer, 3, 13, (int) (0.2 * counter2 + 4), 200, 0);
@@ -475,10 +490,6 @@ public class Game {
                             if (msgBuffer[i] == 0) {
                                 msgBuffer[i] = (byte) 200;
                                 // collision detection
-                            }
-                            else if (getPlayerPosY() == 0) {
-                                printWin();
-                                break;
                             }
                             else {
                                 setHitpoints(getHitpoints() - 1);
@@ -538,6 +549,11 @@ public class Game {
                             }
                         }
                     }
+                    if (getPlayerPosY() == 0) {
+                        printWin();
+                        Log.d("you should win here", "right here");
+                        break;
+                    }
 
                     // If write fails, the connection was probably closed by the server.
                     if (!BT.write(msgBuffer)) {
@@ -553,6 +569,10 @@ public class Game {
                         e.printStackTrace();
                     }
                 }
+
+                //displayCredits();
+
+
             }
 
             //restart Muster
@@ -564,6 +584,17 @@ public class Game {
             target[24 * row + (posi + j) % 24 + column * 24] = (byte) intensity;
         }
     }
+
+    public void displayCredits(View v) {
+        CharSequence text = "App for Lecture \"Mobile Computing & Internet of Things\" ";
+        int duration = Toast.LENGTH_SHORT;
+
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+    }
+
 
 
 }
