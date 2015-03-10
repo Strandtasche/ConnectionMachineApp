@@ -1,6 +1,8 @@
 package com.example.saibot1207.tobiasapp;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -31,8 +33,30 @@ public class Game {
     private int hitpoints = 3;
     private boolean confirmed = false;
 
+
+    boolean displayed = false;
+
+
+    public boolean isDisplayed() {
+        return displayed;
+    }
+
+    public void setDisplayed(boolean displayed) {
+        this.displayed = displayed;
+    }
+
     public Game() {
 
+    }
+
+    public static Handler UIHandler;
+
+    static
+    {
+        UIHandler = new Handler(Looper.getMainLooper());
+    }
+    public static void runOnUI(Runnable runnable) {
+        UIHandler.post(runnable);
     }
 
     public Game(LEDMatrixBTConn BT1, int sendDelay1) {
@@ -432,6 +456,7 @@ public class Game {
         }
 
         while (restarted) {
+            setDisplayed(false);
             boolean playing = true;
             setHitpoints(3);
             Tab2.setDisplayedHP(getHitpoints());
@@ -570,7 +595,23 @@ public class Game {
                     }
                 }
 
-                //displayCredits();
+                if (getHitpoints() <= 0 && !isDisplayed()) {
+                    runOnUI(new Runnable() {
+                        @Override
+                        public void run() {
+                            CharSequence text = "You used up all your Lives. Try again!";
+                            int duration = Toast.LENGTH_SHORT;
+
+
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
+                            setDisplayed(true);
+                        }
+                    });
+                }
+
+
 
 
             }
@@ -585,15 +626,7 @@ public class Game {
         }
     }
 
-    public void displayCredits(View v) {
-        CharSequence text = "App for Lecture \"Mobile Computing & Internet of Things\" ";
-        int duration = Toast.LENGTH_SHORT;
 
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
-    }
 
 
 
