@@ -210,6 +210,28 @@ public class Tab2 extends Activity {
                 // Try to connect.
                 if (!BT.connect()) {
                     loop = false;
+                    connected = false;
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            mStartButton.setText(R.string.startText);
+                            mStartButton.setEnabled(true);
+
+                            Context context = getApplicationContext();
+                            CharSequence text = "Connection Failed. Please make sure target is in Range & ready ";
+                            int duration = Toast.LENGTH_SHORT;
+
+
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
+
+                        }
+                    });
+
+                    return;
 
                 }
 
