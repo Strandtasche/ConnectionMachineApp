@@ -56,7 +56,7 @@ public class Game {
     }
 
     public Game() {
-
+        confirmed = false;
     }
 
     public static Handler UIHandler;
@@ -356,9 +356,9 @@ public class Game {
 
 
 
-        for( int k = 0; k < 50; k++){
+        while( !confirmed ){
             if (!BT.write(msgBuffer)) {
-                //loop = false; //Fehlerbehandlung?
+                break;
             }
             try {
                 // Delay for a moment.
@@ -433,7 +433,7 @@ public class Game {
 
         for( int k = 0; k < 50; k++){
             if (!BT.write(msgBuffer)) {
-                //loop = false; //Fehlerbehandlung?
+                break; //TODO
             }
             try {
                 // Delay for a moment.

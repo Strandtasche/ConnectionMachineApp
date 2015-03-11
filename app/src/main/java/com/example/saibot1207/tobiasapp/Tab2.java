@@ -4,6 +4,7 @@ package com.example.saibot1207.tobiasapp;
  * Created by saibot1207 on 23.02.15.
  */
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
@@ -48,7 +49,9 @@ public class Tab2 extends Activity {
     private int sendDelay;
     private boolean proceed;
     private boolean intro;
+    private boolean hardmode;
     private static SharedPreferences sharedPref;
+    private boolean connected;
 
 
 
@@ -77,6 +80,7 @@ public class Tab2 extends Activity {
         mButtonRight = (Button) findViewById(R.id.buttonRight);
         mTextView = (TextView) findViewById(R.id.hpText);
         game = new Game();
+        connected = false;
 
         v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -84,6 +88,8 @@ public class Tab2 extends Activity {
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         REMOTE_BT_DEVICE_NAME = sharedPref.getString(Tab1.BT_SELECT_DEVICE_KEY, "");
         intro = sharedPref.getBoolean("intro", false);
+        hardmode = sharedPref.getBoolean("difficulty", false);
+
         /* mXBotton = (Button) findViewById(R.id.buttonX);
         mXBotton.setOnTouchListener(new View.OnTouchListener() {
 
@@ -162,6 +168,23 @@ public class Tab2 extends Activity {
     }
 
     public void start(View v) {
+
+        if (connected) {
+
+            mStartButton.setText(R.string.startText);
+            mPlayButton.setEnabled(false);
+            connected = false;
+            game = new Game;
+            onPause();
+            onStop();
+
+
+            return;
+        }
+
+
+
+
         mStartButton.setEnabled(false);
         proceed = false;
 
@@ -169,10 +192,12 @@ public class Tab2 extends Activity {
         // Set up BT connection.
         BT = new LEDMatrixBTConn(this, REMOTE_BT_DEVICE_NAME, X_SIZE, Y_SIZE, COLOR_MODE, APP_NAME);
 
+
         if (!BT.prepare() || !BT.checkIfDeviceIsPaired()) {
             mStartButton.setEnabled(true);
             return;
         }
+
 
         // Start BT sending thread.
         Thread sender = new Thread() {
@@ -185,6 +210,7 @@ public class Tab2 extends Activity {
                 // Try to connect.
                 if (!BT.connect()) {
                     loop = false;
+
                 }
 
                 // Connected. Calculate and set send delay from maximum FPS.
@@ -208,6 +234,7 @@ public class Tab2 extends Activity {
                 game.setBT(BT);
                 game.setSendDelay(sendDelay);
                 game.setContext(getApplicationContext());
+                game.setHardmode(hardmode);
 
                 game.intro(intro);
 
@@ -215,6 +242,9 @@ public class Tab2 extends Activity {
                     @Override
                     public void run() {
                         mPlayButton.setEnabled(true);
+                        connected = true;
+                        mStartButton.setText(R.string.startText2);
+                        mStartButton.setEnabled(true);
                     }
                 });
 
@@ -283,8 +313,12 @@ public class Tab2 extends Activity {
     public void onStop() {
         if ( BT != null) {
             BT.closeConnection();
+            connected = false;
         }
         super.onStop();
+
+        mStartButton.setEnabled(true);
+        mPlayButton.setEnabled(false);
 
         Log.d("stopped", "so true man");
         if (BT != null) {
@@ -298,7 +332,12 @@ public class Tab2 extends Activity {
     public void onDestroy() {
         if ( BT != null) {
             BT.closeConnection();
+            connected = false;
         }
+
+        mStartButton.setEnabled(true);
+        mPlayButton.setEnabled(false);
+
         super.onDestroy();
 
         Log.d("Destroyed.", "so dead man");
@@ -312,6 +351,8 @@ public class Tab2 extends Activity {
 
         REMOTE_BT_DEVICE_NAME = sharedPref.getString(Tab1.BT_SELECT_DEVICE_KEY, "");
         intro = sharedPref.getBoolean("intro", false);
+        hardmode = sharedPref.getBoolean("difficulty", false);
+
     }
 
     public void moveUp(View v) {
