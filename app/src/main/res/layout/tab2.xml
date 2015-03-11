@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:paddingTop="8dp"
-                android:text="One Step from Freedom"
+                android:text="@string/name"
                 android:id="@+id/textView2"
                 android:layout_gravity="center_horizontal|top" />
         </FrameLayout>
@@ -108,10 +108,10 @@
         </FrameLayout>
 
         <TextView
-            android:layout_width="190dp"
-            android:layout_height="137dp"
+            android:layout_width="179dp"
+            android:layout_height="116dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="3 Hitpoints"
+            android:text="@string/lives"
             android:id="@+id/hpText"
             android:layout_gravity="left|top"
             android:paddingLeft="45dp"
