@@ -33,6 +33,16 @@ public class Game {
     private int hitpoints = 3;
     private boolean confirmed = false;
 
+    public boolean isHardmode() {
+        return hardmode;
+    }
+
+    public void setHardmode(boolean hardmode) {
+        this.hardmode = hardmode;
+    }
+
+    private boolean hardmode = false;
+
 
     boolean displayed = false;
 
@@ -505,9 +515,12 @@ public class Game {
                     generateObstacles(msgBuffer, 7, 5, (int) (0.2* counter2 + 3), 200, 0);
                     generateObstacles(msgBuffer, 7, 4, (int) (0.2* counter2 + 3), 200, 0);
                     generateObstacles(msgBuffer, 2, 2, (int) (0.2* counter2 + 6), 200, 0);
-                    generateObstacles(msgBuffer, 3, 18, (int) (0.2* ((240 - counter2) % 240) + 6), 200, 0);
-                    generateObstacles(msgBuffer, 3, 2, (int) (0.2* ((240 - counter2) % 240) + 15), 200, 0);
-                    generateObstacles(msgBuffer, 3, 14, (int) (0.2 * ((240 - counter2) % 240) + 11), 200, 0);
+                    if (isHardmode()) {
+                        generateObstacles(msgBuffer, 3, 18, (int) (0.2* ((240 - counter2) % 240) + 6), 200, 0);
+                        generateObstacles(msgBuffer, 3, 2, (int) (0.2* ((240 - counter2) % 240) + 15), 200, 0);
+                        generateObstacles(msgBuffer, 3, 14, (int) (0.2 * ((240 - counter2) % 240) + 11), 200, 0);
+                        generateObstacles(msgBuffer, 3, 14, (int) (0.2 * ((240 - counter2) % 240) + 11), 200, 0);
+                    }
 
 
                     for (int i = 0; i < (24 * 24); i++) {
