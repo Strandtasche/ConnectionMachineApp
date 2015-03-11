@@ -313,10 +313,11 @@ public class Tab2 extends Activity {
     public void onStop() {
         if ( BT != null) {
             BT.closeConnection();
-            connected = false;
         }
         super.onStop();
 
+        mStartButton.setText(R.string.startText);
+        connected = false;
         mStartButton.setEnabled(true);
         mPlayButton.setEnabled(false);
 
@@ -332,10 +333,12 @@ public class Tab2 extends Activity {
     public void onDestroy() {
         if ( BT != null) {
             BT.closeConnection();
-            connected = false;
+
         }
 
+        connected = false;
         mStartButton.setEnabled(true);
+        mStartButton.setText(R.string.startText);
         mPlayButton.setEnabled(false);
 
         super.onDestroy();

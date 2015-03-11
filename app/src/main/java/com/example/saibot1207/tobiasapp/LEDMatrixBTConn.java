@@ -65,6 +65,10 @@ public class LEDMatrixBTConn {
     // The name of the App that will be making the connection. This will be logged by the server.
     private volatile String mAppName;
 
+    public boolean getBtSocketStatus() {
+        return btSocket.isConnected();
+    }
+
     /**
      * The constructor.
      *

@@ -195,7 +195,7 @@ public class Game {
 
             // If write fails, the connection was probably closed by the server.
             if (!BT.write(msgBuffer)) {
-                loop = false;
+                return;
             }
 
             try {
@@ -357,15 +357,20 @@ public class Game {
 
 
         while( !confirmed ){
-            if (!BT.write(msgBuffer)) {
-                break;
+            if (BT.getBtSocketStatus()) {
+                if (!BT.write(msgBuffer)) {
+                    return;
+                }
+                try {
+                    // Delay for a moment.
+                    // Note: Delaying the same amount of time every frame will not give you constant FPS.
+                    Thread.sleep(sendDelay);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-            try {
-                // Delay for a moment.
-                // Note: Delaying the same amount of time every frame will not give you constant FPS.
-                Thread.sleep(sendDelay);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            else {
+                return;
             }
         }
 
@@ -595,18 +600,25 @@ public class Game {
                     }
 
                     // If write fails, the connection was probably closed by the server.
-                    if (!BT.write(msgBuffer)) {
-                        loop = false;
-                        playing = false;
+                    if (BT != null) {
+                        if (!BT.write(msgBuffer)) {
+                            playing = false;
+                            return;
+
+                        }
+
+                        try {
+                            // Delay for a moment.
+                            // Note: Delaying the same amount of time every frame will not give you constant FPS.
+                            Thread.sleep(sendDelay);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else {
+                        return;
                     }
 
-                    try {
-                        // Delay for a moment.
-                        // Note: Delaying the same amount of time every frame will not give you constant FPS.
-                        Thread.sleep(sendDelay);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                 }
 
                 if (getHitpoints() <= 0 && !isDisplayed()) {
