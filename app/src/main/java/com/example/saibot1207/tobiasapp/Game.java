@@ -386,6 +386,7 @@ public class Game {
             msgBuffer[8 + i * 24] = (byte) 200;
             msgBuffer[11 + i * 24] = (byte) 200;
             msgBuffer[12 + i * 24] = (byte) 200;
+            msgBuffer[15 + i * 24] = (byte) 200;
 
         }
         msgBuffer[2 + 2 * 24] = (byte) 200;
@@ -422,7 +423,7 @@ public class Game {
         msgBuffer[7 + 16 * 24] = (byte) 200;
         msgBuffer[7 + 17 * 24] = (byte) 200;
         msgBuffer[8 + 14 * 24] = (byte) 200;
-        msgBuffer[9 + 15 * 24] = (byte) 200;
+        msgBuffer[8 + 15 * 24] = (byte) 200;
 
         msgBuffer[13 + 15 * 24] = (byte) 200;
         msgBuffer[15 + 18 * 24] = (byte) 200;

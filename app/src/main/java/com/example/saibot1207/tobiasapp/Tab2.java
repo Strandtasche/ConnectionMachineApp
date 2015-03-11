@@ -174,7 +174,7 @@ public class Tab2 extends Activity {
             mStartButton.setText(R.string.startText);
             mPlayButton.setEnabled(false);
             connected = false;
-            game = new Game;
+            game = new Game();
             onPause();
             onStop();
 
