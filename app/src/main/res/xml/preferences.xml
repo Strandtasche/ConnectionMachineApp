@@ -40,7 +40,7 @@
 
                 </CheckBoxPreference>
              <CheckBoxPreference
-                android:id="@+id/vibrateCheckBox"
+                android:id="@+id/vibrate"
                 android:defaultValue="true"
                 android:key="vibrate"
                 android:title="Disable Vibrations"

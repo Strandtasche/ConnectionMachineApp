@@ -160,8 +160,10 @@ public class Tab2 extends Activity {
             @Override
             public void run() {
                 mTextView.setText(i + " Hitpoints");
-                if (!sharedPref.getBoolean(Tab1.GAMEPLAY_VIBRATE, true) ) {
-                    v.vibrate(40l);
+                Log.d("setDisplayedHP", "was called");
+                if (!sharedPref.getBoolean("vibrate", true) ) {
+                    v.vibrate(60);
+                    Log.d("setDisplayedHP", "was triggered");
                 }
             }
         });
