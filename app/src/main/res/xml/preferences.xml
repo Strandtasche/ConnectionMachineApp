@@ -7,7 +7,7 @@
         <com.example.saibot1207.tobiasapp.DynamicListPreference
             android:key="deviceBluetooth"
             android:title="Device Selection"
-            android:summary="Which device do you want to connect to"
+            android:summary="Which device do you want to connect to?"
             android:defaultValue=""/>
     </PreferenceCategory>
     <PreferenceCategory
@@ -32,7 +32,7 @@
                 android:id="@+id/introCheckBox"
                 android:key="intro"
                 android:title="Disable Intro"
-                android:summary="Show Intro on restart?"
+                android:summary="Show Intro on Connect?"
                 android:defaultValue="true"
 
                 >
